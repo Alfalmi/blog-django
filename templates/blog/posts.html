@@ -1,11 +1,24 @@
 {% load static %}
 <link rel="stylesheet" href="{% static 'blog/style.css' %}" />
 
-<h1>Posts</h1>
+{% include 'blog/navbar.html' %}
 
-{% for post in object_list %}    
-<hr>
-<a href="/post/{{post.id}}">{{ post.title }}</a>
+<div class="container">
+  <br>
+  {% block content %} {% if user.is_authenticated %}
+  <h1>Welcome, {{ user.username }}!</h1>
+  <p><a href="{% url 'logout' %}">logout</a></p>
+  {% else %}
+  You are not logged in <a href="{% url 'login' %}">login</a>
+  {% endif %} {% endblock %}
 
-{% endfor %}
+  <h1>Posts</h1>
 
+  <ul>
+    {% for post in object_list %}
+
+    <li><a href="/post/{{post.id}}">{{ post.title }}</a></li>
+
+    {% endfor %}
+  </ul>
+</div>

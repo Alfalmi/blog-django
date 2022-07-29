@@ -20,4 +20,7 @@ from django.urls import re_path, include
 urlpatterns = [
     re_path('admin/', admin.site.urls),
     re_path('', include('blog.urls')),
-]
+    re_path('accounts/', include('accounts.urls')),
+    re_path('accounts/', include('django.contrib.auth.urls')), 
+    
+    ]
