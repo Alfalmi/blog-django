@@ -7,15 +7,6 @@
 <div class="container">
 <h1>Posts</h1>
 
-{% block content %}
-{% if user.is_authenticated %}
-  Welcome {{ user.username }}! <a href="{% url 'logout' %}">logout</a>
-{% else %}
-  You are not logged in <a href="{% url 'login' %}">login</a>
-{% endif %}
-{% endblock %}
-
-
 {% for post in object_list %}    
 <hr>
 <h2>{{ post.title }}</h2>
